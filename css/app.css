@@ -23,6 +23,10 @@ h1 {
 	font-family: 'Didact Gothic', sans-serif;
 }
 
+.badge {
+	font-size: 0.5em;
+}
+
 /* **************** HERO ******************* */
 .hero{
 	background-color: #23367f; 
@@ -49,8 +53,29 @@ h1 {
 
 .want {
 	background-color: #a4afe7; 
-	padding: 50px 60px 40px 30px;
-	height: 325px;
+	padding: 50px 40px 30px 40px;
+	display: block;
+	margin: 0 auto;
+}
+
+/* **************** PART2 ******************* */
+
+.part2 {
+	padding: 10px 0px;
+	margin-bottom: 3em;
+}
+
+.werk {
+	margin-bottom: 3em;
+}
+
+/* **************** MANGLE ******************* */
+
+.mangle {
+	background-color: #20dada;
+	display: block;
+	padding: 2% 0% 1.6% 15%;
+	margin: 0 auto;
 }
 
 /* **************** FOOTER ******************* */
@@ -63,7 +88,6 @@ footer{
 }
 
 footer a{
-	display: block;
 	color: rgba(35,54,127,0.6);
 }
 
@@ -73,7 +97,6 @@ footer h4 {
 }
 
 footer a:hover {
-	display: block;
 	color: rgba(35,54,127,0.8);
 }
 
@@ -87,8 +110,20 @@ footer a span{
 	color: rgba(35,54,127,0.3);
 }
 
-#contact p {
-	font-size: 4em;
+.contact {
+	text-align: center;
+}
+
+.sm {
+	padding: 0em 0.5em 0em 0.5em;
+}
+
+.obnoxious {
+	text-align: center;
+	margin-bottom: 1em;
+	margin-top: 1em;
+	color: #23367f;
+	font-weight: 500;
 }
 
 /* **************** MEDIA QUERY ******************* */
@@ -105,4 +140,17 @@ footer a span{
 	.hero p {
 		width:100%;
 	}
+}
+
+@media screen and (max-width: 39.9375em) {
+	.hero h1 {
+		font-size: 3em;
+	}
+
+	.mangle responsive-embed {
+		padding: 0;
+		margin: 0;
+	}
+
+
 }

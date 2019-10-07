@@ -34395,7 +34395,7 @@ function rebuildAttribute (attrib, data, itemSize) {
 	/**
 	 * @author Nikos M. / https://github.com/foo123/
 	 *
-	 * Abstract Base class to load generic binary textures formats (rgbe, hdr, ...)
+	 * Abstract Base class to load generic2 binary textures formats (rgbe, hdr, ...)
 	 */
 
 	var DataTextureLoader = BinaryTextureLoader;
@@ -60554,7 +60554,7 @@ Distortion.prototype.distort = function(radius) {
 // https://github.com/googlesamples/cardboard-unity/blob/master/Cardboard/Scripts/CardboardProfile.cs#L412
 
 // Solves a small linear equation via destructive gaussian
-// elimination and back substitution.  This isn't generic numeric
+// elimination and back substitution.  This isn't generic2 numeric
 // code, it's just a quick hack to work with the generally
 // well-behaved symmetric matrices for least-squares fitting.
 // Not intended for reuse.

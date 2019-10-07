@@ -1,1 +1,0 @@
-# Wongdoody Cover Letter

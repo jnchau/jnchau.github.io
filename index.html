@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>K-pop cover schedule · May–July 2026</title>
+  <style>
+    :root {
+      --bg: #0f1115;
+      --panel: #171a21;
+      --text: #e8eaef;
+      --muted: #9aa3b2;
+      --border: #2a3140;
+      --holiday: #fbbf24;
+      --travel-stripe: rgba(56, 189, 248, 0.35);
+      --overlap: #f43f5e;
+      --c1: #ff5c8a;
+      --c1-dim: rgba(255, 92, 138, 0.15);
+      --c2: #c8f542;
+      --c2-dim: rgba(200, 245, 66, 0.12);
+      --c3: #c084fc;
+      --c3-dim: rgba(192, 132, 252, 0.15);
+      --c4: #2dd4bf;
+      --c4-dim: rgba(45, 212, 191, 0.14);
+      --c5: #60a5fa;
+      --c5-dim: rgba(96, 165, 250, 0.14);
+      --dress-accent: #f87171;
+      --dress-bg: rgba(127, 29, 29, 0.45);
+      --film-accent: #fbbf24;
+      --film-bg: rgba(120, 53, 15, 0.35);
+      --perf-accent: #e9d5ff;
+      --perf-bg: rgba(88, 28, 135, 0.4);
+      --radius: 10px;
+      --font: "DM Sans", system-ui, -apple-system, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      line-height: 1.45;
+      min-height: 100vh;
+      padding: 1.25rem clamp(0.75rem, 2vw, 2rem) 3rem;
+    }
+    header {
+      max-width: 1200px;
+      margin: 0 auto 1.25rem;
+    }
+    h1 {
+      font-size: clamp(1.35rem, 2.5vw, 1.85rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 0.35rem;
+    }
+    .sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .layout {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 960px) {
+      .layout {
+        grid-template-columns: auto minmax(0, 1fr);
+        align-items: start;
+      }
+      aside {
+        justify-self: start;
+        width: max-content;
+        max-width: 100%;
+      }
+    }
+    aside {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.1rem;
+      position: sticky;
+      top: 0.75rem;
+      min-width: 0;
+    }
+    aside h2 {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin: 0 0 0.65rem;
+      font-weight: 600;
+    }
+    .legend-block { margin-bottom: 1rem; }
+    .legend-block:last-child { margin-bottom: 0; }
+    .legend-cover-line {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      margin-bottom: 0.5rem;
+      min-width: 0;
+    }
+    @media (min-width: 960px) {
+      .legend-cover-line { white-space: nowrap; }
+    }
+    .legend-cover-line:last-child { margin-bottom: 0; }
+    .legend-cover-text {
+      cursor: default;
+      font-weight: 600;
+      min-width: 0;
+      border-bottom: 1px dashed rgba(232, 234, 239, 0.35);
+      transition: color 0.15s, border-color 0.15s;
+    }
+    .legend-cover-line:hover .legend-cover-text,
+    .legend-cover-line:focus-visible .legend-cover-text {
+      color: #fff;
+      border-bottom-color: rgba(232, 234, 239, 0.85);
+      outline: none;
+    }
+    .legend-cover-line:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.35);
+      outline-offset: 2px;
+      border-radius: 6px;
+    }
+    .legend-meta {
+      color: var(--muted);
+      font-weight: 400;
+    }
+    .swatch {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .type-row {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      margin-bottom: 0.35rem;
+      color: var(--muted);
+    }
+    .type-ico {
+      width: 22px;
+      height: 22px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      background: #252b38;
+      font-size: 0.72rem;
+      flex-shrink: 0;
+    }
+    .type-ico.dress-legend {
+      background: var(--dress-bg);
+      color: #fecaca;
+      font-weight: 800;
+      font-size: 0.58rem;
+      letter-spacing: 0.02em;
+    }
+    .type-ico.film-legend {
+      background: var(--film-bg);
+      color: #fde68a;
+      font-weight: 800;
+      font-size: 0.52rem;
+    }
+    .type-ico.perf-legend {
+      background: var(--perf-bg);
+      color: #f5d0fe;
+      font-weight: 800;
+      font-size: 0.52rem;
+    }
+    /* Legend hover → dim other covers on calendar */
+    body[data-hl-cover] .event[data-cover-id] {
+      opacity: 0.2;
+      filter: grayscale(0.35);
+      transition: opacity 0.15s, filter 0.15s, box-shadow 0.15s, transform 0.15s;
+    }
+    body[data-hl-cover] .event[data-cover-id].event--hl {
+      opacity: 1;
+      filter: none;
+      box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.65), 0 4px 20px rgba(0, 0, 0, 0.45);
+      transform: scale(1.02);
+      z-index: 2;
+    }
+    .months { display: flex; flex-direction: column; gap: 1.75rem; }
+    .month {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .month-head {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--border);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+    .dow {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 0;
+      background: #12151c;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.68rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      text-align: center;
+      padding: 0.45rem 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+    .cell {
+      background: var(--panel);
+      min-height: 118px;
+      padding: 0.35rem 0.4rem 0.45rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .cell.outside { opacity: 0.38; background: #12151c; }
+    .cell.travel {
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--c4-dim),
+        var(--c4-dim) 6px,
+        var(--travel-stripe) 6px,
+        var(--travel-stripe) 12px
+      ), var(--panel);
+    }
+    .cell.has-overlap { box-shadow: inset 0 0 0 2px var(--overlap); }
+    .date-line {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 0.25rem 0.4rem;
+      margin-bottom: 0.15rem;
+    }
+    .num { font-weight: 700; font-size: 0.95rem; }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.2rem; align-items: center; }
+    .tag-holiday {
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: #1a1404;
+      background: var(--holiday);
+      padding: 0.12rem 0.35rem;
+      border-radius: 4px;
+    }
+    .tag-bday {
+      font-size: 0.62rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #ec4899, #a855f7);
+      padding: 0.12rem 0.35rem;
+      border-radius: 4px;
+    }
+    .overlap-pill {
+      font-size: 0.58rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #fff;
+      background: var(--overlap);
+      padding: 0.1rem 0.35rem;
+      border-radius: 4px;
+      width: fit-content;
+    }
+    .event {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.35rem;
+      font-size: 0.68rem;
+      line-height: 1.25;
+      padding: 0.28rem 0.35rem;
+      border-radius: 6px;
+      border-left: 4px solid var(--ev-c, #888);
+      background: var(--ev-bg, rgba(255, 255, 255, 0.04));
+      transition: opacity 0.15s, filter 0.15s, box-shadow 0.15s, transform 0.15s;
+    }
+    .event.event--dress {
+      box-shadow: inset 0 0 0 1px rgba(248, 113, 113, 0.28);
+    }
+    .event.event--film {
+      box-shadow: inset 0 0 0 1px rgba(251, 191, 36, 0.3);
+    }
+    .event.event--perf {
+      box-shadow: inset 0 0 0 1px rgba(196, 181, 253, 0.35);
+    }
+    .ev-type-chip {
+      display: inline-flex;
+      align-items: stretch;
+      flex-shrink: 0;
+      border-radius: 5px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      line-height: 1;
+    }
+    .ev-type-ico {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      min-height: 20px;
+      font-size: 0.62rem;
+      background: rgba(0, 0, 0, 0.28);
+      color: var(--text);
+    }
+    .ev-type-label {
+      display: flex;
+      align-items: center;
+      padding: 0 0.32rem;
+      font-size: 0.52rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+    }
+    .ev-type-chip--practice .ev-type-ico {
+      width: 22px;
+      min-height: 22px;
+    }
+    .ev-type-chip--dress .ev-type-label {
+      background: #b91c1c;
+      color: #fecaca;
+    }
+    .ev-type-chip--film .ev-type-label {
+      background: #b45309;
+      color: #fef3c7;
+    }
+    .ev-type-chip--perf .ev-type-label {
+      background: #6b21a8;
+      color: #f5d0fe;
+    }
+    .ev-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.35rem;
+      width: 100%;
+    }
+    .ev-body { min-width: 0; flex: 1; }
+    .ev-title { font-weight: 700; color: var(--text); }
+    .ev-time { color: var(--muted); font-size: 0.62rem; }
+    .ev-note-wrap {
+      margin-top: 0.25rem;
+      width: 100%;
+    }
+    .ev-note-input {
+      width: 100%;
+      font: inherit;
+      font-size: 0.6rem;
+      padding: 0.2rem 0.3rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.35);
+      color: var(--text);
+    }
+    .ev-note-input::placeholder { color: var(--muted); opacity: 0.85; }
+    .ev-note-input:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    .schedule-section {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+    .schedule-section h2 {
+      font-size: 1.05rem;
+      margin: 0 0 1rem;
+      letter-spacing: -0.02em;
+    }
+    .cover-schedule {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.85rem 1rem 1rem;
+      margin-bottom: 1rem;
+    }
+    .cover-schedule:last-child { margin-bottom: 0; }
+    .cover-schedule h3 {
+      font-size: 0.95rem;
+      margin: 0 0 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+    .cover-schedule h3 .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .cover-schedule ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .cover-schedule li {
+      font-size: 0.82rem;
+      color: var(--muted);
+      padding: 0.28rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .cover-schedule li:first-of-type { border-top: none; padding-top: 0; }
+    .cover-schedule .li-main { color: var(--text); font-weight: 500; }
+    .cover-schedule .li-type {
+      display: inline-block;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-left: 0.35rem;
+      padding: 0.08rem 0.3rem;
+      border-radius: 4px;
+      vertical-align: middle;
+    }
+    .cover-schedule .li-type.practice { background: #252b38; color: var(--muted); }
+    .cover-schedule .li-type.dress { background: #7f1d1d; color: #fecaca; }
+    .cover-schedule .li-type.film { background: #78350f; color: #fde68a; }
+    .cover-schedule .li-type.perf { background: #581c87; color: #f5d0fe; }
+    .foot-note {
+      margin-top: 1.25rem;
+      font-size: 0.78rem;
+      color: var(--muted);
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <h1>K-pop cover schedule</h1>
+    <p class="sub">May–July 2026 · Weeks start on Sunday · Times shown as listed</p>
+  </header>
+  <div class="layout">
+    <aside>
+      <div class="legend-block">
+        <h2>Covers (hover line)</h2>
+        <div class="legend-cover-line" tabindex="0" data-cover-id="c1" title="Hover to highlight on calendar">
+          <span class="swatch" style="background:var(--c1)"></span>
+          <span class="legend-cover-text">That’s a No No — ITZY</span>
+        </div>
+        <div class="legend-cover-line" tabindex="0" data-cover-id="c2" title="Hover to highlight on calendar">
+          <span class="swatch" style="background:var(--c2)"></span>
+          <span class="legend-cover-text">Smart — Le Sserafim</span>
+        </div>
+        <div class="legend-cover-line" tabindex="0" data-cover-id="c3" title="Hover to highlight on calendar">
+          <span class="swatch" style="background:var(--c3)"></span>
+          <span class="legend-cover-text">Easy — Le Sserafim</span>
+        </div>
+        <div class="legend-cover-line" tabindex="0" data-cover-id="c4" title="Hover to highlight on calendar">
+          <span class="swatch" style="background:var(--c4)"></span>
+          <span class="legend-cover-text">Tokyo Drift — One or Eight</span>
+        </div>
+        <div class="legend-cover-line" tabindex="0" data-cover-id="c5" title="Hover to highlight on calendar">
+          <span class="swatch" style="background:var(--c5)"></span>
+          <span class="legend-cover-text">404 New Era — KiiKii</span>
+        </div>
+      </div>
+      <div class="legend-block">
+        <h2>Event types</h2>
+        <div class="type-row"><span class="type-ico" title="Practice">▶</span> Practice</div>
+        <div class="type-row"><span class="type-ico dress-legend" title="Dress rehearsal">DR</span> Dress rehearsal (red)</div>
+        <div class="type-row"><span class="type-ico film-legend" title="Filming">FILM</span> Filming (gold)</div>
+        <div class="type-row"><span class="type-ico perf-legend" title="Performance">PERF</span> Performance (violet)</div>
+      </div>
+      <div class="legend-block">
+        <h2>Other</h2>
+        <div class="type-row"><span class="type-ico" style="background:var(--holiday);color:#1a1404">H</span> US holiday</div>
+        <div class="type-row"><span class="type-ico" style="background:linear-gradient(135deg,#ec4899,#a855f7);color:#fff">🎂</span> Mom’s birthday (6/27)</div>
+        <div class="type-row"><span class="type-ico" style="background:var(--c4-dim);color:var(--text)">✈</span> Out of town (Jul 9–16)</div>
+        <div class="type-row"><span class="type-ico" style="background:var(--overlap);color:#fff">!</span> Time overlap same day</div>
+      </div>
+    </aside>
+    <main class="months" id="months"></main>
+  </div>
+  <section class="schedule-section" id="schedule-by-cover" aria-labelledby="schedule-heading">
+    <h2 id="schedule-heading">Schedule by cover</h2>
+    <div id="schedule-list-mount"></div>
+  </section>
+  <p class="foot-note">
+    Overlap means at least two events share the same calendar day with overlapping clock times (not counting all-day travel shading). July 11 has a “Smart” practice during your out-of-town block—worth double-checking if that date should move. Practice notes are saved in this browser only (local storage).
+  </p>
+  <script>
+    const NOTES_KEY = "kpop-dance-cal-notes-v1";
+
+    const covers = {
+      c1: { name: "That’s a No No", artist: "ITZY", color: "var(--c1)", bg: "var(--c1-dim)" },
+      c2: { name: "Smart", artist: "Le Sserafim", color: "var(--c2)", bg: "var(--c2-dim)" },
+      c3: { name: "Easy", artist: "Le Sserafim", color: "var(--c3)", bg: "var(--c3-dim)" },
+      c4: { name: "Tokyo Drift", artist: "One or Eight", color: "var(--c4)", bg: "var(--c4-dim)" },
+      c5: { name: "404 New Era", artist: "KiiKii", color: "var(--c5)", bg: "var(--c5-dim)" },
+    };
+
+    const TYPE_ICO = { practice: "▶", dress: "◆", film: "◎", perf: "★" };
+
+    function parseTimeToken(tok) {
+      const t = tok.trim().toLowerCase();
+      const isPm = t.includes("pm");
+      const isAm = t.includes("am");
+      const core = t.replace(/(am|pm)/g, "").trim();
+      let h = 0;
+      let m = 0;
+      if (core.includes(":")) {
+        const [hs, ms] = core.split(":");
+        h = parseInt(hs, 10);
+        m = parseInt(ms, 10) || 0;
+      } else {
+        h = parseInt(core, 10) || 0;
+      }
+      if (isPm && h !== 12) h += 12;
+      if (isAm && h === 12) h = 0;
+      return h * 60 + m;
+    }
+
+    function inferStartMeridiem(startTok, endTok) {
+      const a = startTok.trim().toLowerCase();
+      const b = endTok.trim().toLowerCase();
+      if (a.includes("am") || a.includes("pm")) return startTok;
+      if (b.includes("pm")) return `${startTok.trim()}pm`;
+      if (b.includes("am")) return `${startTok.trim()}am`;
+      return startTok;
+    }
+
+    function parseRange(timeStr) {
+      let t = timeStr.trim().replace(/–/g, "-");
+      if (/\?\s*$/.test(t) || t.includes("-?")) {
+        const startPart = t.split(/\s*-\s*\?/)[0].trim();
+        return { start: parseTimeToken(startPart), end: 24 * 60 - 1 };
+      }
+      const parts = t.split(/\s*-\s*/).map((s) => s.trim());
+      if (parts.length !== 2) {
+        return { start: 0, end: 0 };
+      }
+      let [a, b] = parts;
+      a = inferStartMeridiem(a, b);
+      return { start: parseTimeToken(a), end: parseTimeToken(b) };
+    }
+
+    /** @type {{evId:string,y:number,mo:number,d:number,type:string,coverId:string,timeStr:string,start:number,end:number}[]} */
+    const raw = [
+      { y: 2026, mo: 5, d: 1, type: "practice", coverId: "c1", timeStr: "7–10pm" },
+      { y: 2026, mo: 5, d: 2, type: "practice", coverId: "c1", timeStr: "1–3:30pm" },
+      { y: 2026, mo: 5, d: 8, type: "practice", coverId: "c1", timeStr: "7–10pm" },
+      { y: 2026, mo: 5, d: 11, type: "dress", coverId: "c1", timeStr: "7–10pm" },
+      { y: 2026, mo: 5, d: 15, type: "practice", coverId: "c1", timeStr: "7–9:30pm" },
+      { y: 2026, mo: 5, d: 18, type: "film", coverId: "c1", timeStr: "7–10pm" },
+      { y: 2026, mo: 6, d: 13, type: "perf", coverId: "c1", timeStr: "1–3pm" },
+
+      { y: 2026, mo: 6, d: 21, type: "practice", coverId: "c2", timeStr: "11am–1pm" },
+      { y: 2026, mo: 6, d: 28, type: "practice", coverId: "c2", timeStr: "12–2pm" },
+      { y: 2026, mo: 7, d: 5, type: "practice", coverId: "c2", timeStr: "12–2pm" },
+      { y: 2026, mo: 7, d: 8, type: "practice", coverId: "c2", timeStr: "6:30–8:30pm" },
+      { y: 2026, mo: 7, d: 11, type: "practice", coverId: "c2", timeStr: "12–2pm" },
+      { y: 2026, mo: 7, d: 15, type: "dress", coverId: "c2", timeStr: "6:30–8:30pm" },
+      { y: 2026, mo: 7, d: 18, type: "film", coverId: "c2", timeStr: "10am–12pm" },
+
+      { y: 2026, mo: 6, d: 1, type: "practice", coverId: "c3", timeStr: "7–9pm" },
+      { y: 2026, mo: 6, d: 6, type: "practice", coverId: "c3", timeStr: "4–7pm" },
+      { y: 2026, mo: 6, d: 8, type: "practice", coverId: "c3", timeStr: "7–9pm" },
+      { y: 2026, mo: 6, d: 12, type: "practice", coverId: "c3", timeStr: "7–9pm" },
+      { y: 2026, mo: 6, d: 13, type: "practice", coverId: "c3", timeStr: "7–9pm" },
+      { y: 2026, mo: 6, d: 15, type: "practice", coverId: "c3", timeStr: "7–9pm" },
+      { y: 2026, mo: 6, d: 28, type: "practice", coverId: "c3", timeStr: "7–9pm" },
+      { y: 2026, mo: 6, d: 30, type: "practice", coverId: "c3", timeStr: "7–9pm" },
+      { y: 2026, mo: 7, d: 2, type: "dress", coverId: "c3", timeStr: "7–9pm" },
+      { y: 2026, mo: 7, d: 6, type: "film", coverId: "c3", timeStr: "6pm–9pm" },
+
+      { y: 2026, mo: 6, d: 2, type: "practice", coverId: "c4", timeStr: "7–9pm" },
+      { y: 2026, mo: 6, d: 4, type: "practice", coverId: "c4", timeStr: "7:30–9:20pm" },
+      { y: 2026, mo: 6, d: 10, type: "practice", coverId: "c4", timeStr: "8:30–10:30pm" },
+      { y: 2026, mo: 6, d: 17, type: "practice", coverId: "c4", timeStr: "8:30–10pm" },
+      { y: 2026, mo: 6, d: 23, type: "practice", coverId: "c4", timeStr: "7:30–9:30pm" },
+      { y: 2026, mo: 6, d: 26, type: "practice", coverId: "c4", timeStr: "7:30–9:30pm" },
+      { y: 2026, mo: 7, d: 1, type: "practice", coverId: "c4", timeStr: "7:30–9:30pm" },
+      { y: 2026, mo: 7, d: 17, type: "practice", coverId: "c4", timeStr: "8:30–10:30pm" },
+      { y: 2026, mo: 7, d: 19, type: "perf", coverId: "c4", timeStr: "3–5pm" },
+      { y: 2026, mo: 7, d: 20, type: "film", coverId: "c4", timeStr: "8–10pm" },
+
+      { y: 2026, mo: 5, d: 23, type: "practice", coverId: "c5", timeStr: "7:30–9:30pm" },
+      { y: 2026, mo: 5, d: 24, type: "practice", coverId: "c5", timeStr: "12–2pm" },
+      { y: 2026, mo: 5, d: 27, type: "practice", coverId: "c5", timeStr: "7–9pm" },
+      { y: 2026, mo: 5, d: 29, type: "practice", coverId: "c5", timeStr: "7:30–10pm" },
+      { y: 2026, mo: 5, d: 31, type: "practice", coverId: "c5", timeStr: "12–2pm" },
+      { y: 2026, mo: 6, d: 9, type: "practice", coverId: "c5", timeStr: "7–9pm" },
+      { y: 2026, mo: 6, d: 13, type: "practice", coverId: "c5", timeStr: "7:30–9pm" },
+      { y: 2026, mo: 6, d: 10, type: "dress", coverId: "c5", timeStr: "7–9pm" },
+      { y: 2026, mo: 6, d: 14, type: "film", coverId: "c5", timeStr: "12–3pm" },
+    ];
+
+    const events = raw.map((e, i) => {
+      const norm = e.timeStr.replace(/–/g, "-");
+      const r = parseRange(norm);
+      return { ...e, evId: `ev-${i}`, timeStr: e.timeStr, start: r.start, end: r.end };
+    });
+
+    const holidays = {
+      "2026-5-10": "Mother’s Day",
+      "2026-5-25": "Memorial Day",
+      "2026-6-19": "Juneteenth",
+      "2026-6-21": "Father’s Day",
+      "2026-7-4": "Independence Day",
+    };
+
+    function key(y, mo, d) {
+      return `${y}-${mo}-${d}`;
+    }
+
+    function dayOverlap(evts) {
+      if (evts.length < 2) return false;
+      const sorted = [...evts].sort((a, b) => a.start - b.start);
+      let maxEnd = sorted[0].end;
+      for (let i = 1; i < sorted.length; i++) {
+        if (sorted[i].start < maxEnd) return true;
+        maxEnd = Math.max(maxEnd, sorted[i].end);
+      }
+      return false;
+    }
+
+    function eventsForDay(y, mo, d) {
+      return events.filter((e) => e.y === y && e.mo === mo && e.d === d);
+    }
+
+    function isTravel(y, mo, d) {
+      if (y !== 2026 || mo !== 7) return false;
+      return d >= 9 && d <= 16;
+    }
+
+    /** Human month numbers 5–7 (May–July) → heading label */
+    const MONTH_HEADING = { 5: "May", 6: "June", 7: "July" };
+
+    function eventDate(e) {
+      return new Date(e.y, e.mo - 1, e.d);
+    }
+
+    function longWeekday(y, mo, d) {
+      return new Date(y, mo - 1, d).toLocaleDateString("en-US", { weekday: "long" });
+    }
+
+    function longMonthDayYear(y, mo, d) {
+      return new Date(y, mo - 1, d).toLocaleDateString("en-US", {
+        month: "long",
+        day: "numeric",
+        year: "numeric",
+      });
+    }
+
+    function typeLabel(type) {
+      if (type === "practice") return "Practice";
+      if (type === "dress") return "Dress rehearsal";
+      if (type === "film") return "Filming";
+      return "Performance";
+    }
+
+    function typeChipHtml(type, tlab) {
+      const ico = TYPE_ICO[type];
+      if (type === "dress") {
+        return `<div class="ev-type-chip ev-type-chip--dress" title="${tlab}"><span class="ev-type-ico">${ico}</span><span class="ev-type-label">DR</span></div>`;
+      }
+      if (type === "film") {
+        return `<div class="ev-type-chip ev-type-chip--film" title="${tlab}"><span class="ev-type-ico">${ico}</span><span class="ev-type-label">FILM</span></div>`;
+      }
+      if (type === "perf") {
+        return `<div class="ev-type-chip ev-type-chip--perf" title="${tlab}"><span class="ev-type-ico">${ico}</span><span class="ev-type-label">PERF</span></div>`;
+      }
+      return `<div class="ev-type-chip ev-type-chip--practice" title="${tlab}"><span class="ev-type-ico">${ico}</span></div>`;
+    }
+
+    function renderMonth(year, month) {
+      const first = new Date(year, month - 1, 1);
+      const startDow = first.getDay();
+      const daysInMonth = new Date(year, month, 0).getDate();
+      const prevDays = new Date(year, month - 1, 0).getDate();
+
+      const wrap = document.createElement("section");
+      wrap.className = "month";
+      const head = document.createElement("div");
+      head.className = "month-head";
+      const monthWord = MONTH_HEADING[month] || `Month ${month}`;
+      head.textContent = `${monthWord} ${year}`;
+      wrap.appendChild(head);
+
+      const dow = document.createElement("div");
+      dow.className = "dow";
+      ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].forEach((w) => {
+        const c = document.createElement("div");
+        c.textContent = w;
+        dow.appendChild(c);
+      });
+      wrap.appendChild(dow);
+
+      const grid = document.createElement("div");
+      grid.className = "grid";
+
+      for (let i = 0; i < startDow; i++) {
+        const dayNum = prevDays - startDow + i + 1;
+        const cell = document.createElement("div");
+        cell.className = "cell outside";
+        cell.innerHTML = `<div class="date-line"><span class="num">${dayNum}</span></div>`;
+        grid.appendChild(cell);
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const cell = document.createElement("div");
+        const classes = ["cell"];
+        if (isTravel(year, month, d)) classes.push("travel");
+        const evts = eventsForDay(year, month, d);
+        if (dayOverlap(evts)) classes.push("has-overlap");
+        cell.className = classes.join(" ");
+
+        const hk = key(year, month, d);
+        const hol = holidays[hk];
+
+        let html = `<div class="date-line"><span class="num">${d}</span><div class="tags">`;
+        if (month === 6 && d === 27) {
+          html += `<span class="tag-bday">Mom’s birthday</span>`;
+        }
+        if (hol) {
+          html += `<span class="tag-holiday">${hol}</span>`;
+        }
+        if (isTravel(year, month, d)) {
+          html += `<span class="tag-holiday" style="background:#38bdf8;color:#042f2e">Out of town</span>`;
+        }
+        html += `</div></div>`;
+
+        if (dayOverlap(evts)) {
+          html += `<div class="overlap-pill">Overlap</div>`;
+        }
+
+        const sortedEv = [...evts].sort((a, b) => a.start - b.start);
+        for (const e of sortedEv) {
+          const cv = covers[e.coverId];
+          const tlab = typeLabel(e.type);
+          const typeClass =
+            e.type === "dress" ? "event--dress" : e.type === "film" ? "event--film" : e.type === "perf" ? "event--perf" : "";
+          const chip = typeChipHtml(e.type, tlab);
+          const noteBlock =
+            e.type === "practice"
+              ? `<div class="ev-note-wrap"><label class="sr-only" for="n-${e.evId}">Note</label><input id="n-${e.evId}" class="ev-note-input" data-ev-id="${e.evId}" type="text" maxlength="240" placeholder="Practice note…" autocomplete="off" /></div>`
+              : "";
+          html += `<div class="event ${typeClass}" data-cover-id="${e.coverId}" data-ev-id="${e.evId}" style="--ev-c:${cv.color};--ev-bg:${cv.bg}">
+            <div class="ev-top">
+              ${chip}
+              <div class="ev-body">
+                <div class="ev-title">${cv.name}</div>
+                <div class="ev-time">${tlab} · ${e.timeStr}</div>
+                ${noteBlock}
+              </div>
+            </div>
+          </div>`;
+        }
+
+        cell.innerHTML = html;
+        grid.appendChild(cell);
+      }
+
+      const totalCells = startDow + daysInMonth;
+      const rem = totalCells % 7 === 0 ? 0 : 7 - (totalCells % 7);
+      for (let i = 0; i < rem; i++) {
+        const cell = document.createElement("div");
+        cell.className = "cell outside";
+        cell.innerHTML = `<div class="date-line"><span class="num">${i + 1}</span></div>`;
+        grid.appendChild(cell);
+      }
+
+      wrap.appendChild(grid);
+      return wrap;
+    }
+
+    function loadNotes() {
+      try {
+        const s = localStorage.getItem(NOTES_KEY);
+        return s ? JSON.parse(s) : {};
+      } catch {
+        return {};
+      }
+    }
+
+    function saveNotes(map) {
+      try {
+        localStorage.setItem(NOTES_KEY, JSON.stringify(map));
+      } catch (_) {}
+    }
+
+    function wireLegendHighlight() {
+      const setHl = (id) => {
+        if (id) {
+          document.body.dataset.hlCover = id;
+          document.querySelectorAll(`.event[data-cover-id="${id}"]`).forEach((el) => el.classList.add("event--hl"));
+        } else {
+          delete document.body.dataset.hlCover;
+          document.querySelectorAll(".event.event--hl").forEach((el) => el.classList.remove("event--hl"));
+        }
+      };
+      document.querySelectorAll(".legend-cover-line[data-cover-id]").forEach((el) => {
+        const id = el.getAttribute("data-cover-id");
+        el.addEventListener("mouseenter", () => setHl(id));
+        el.addEventListener("mouseleave", () => setHl(null));
+        el.addEventListener("focus", () => setHl(id));
+        el.addEventListener("blur", () => setHl(null));
+      });
+    }
+
+    function wireNotes() {
+      let notes = loadNotes();
+      document.querySelectorAll(".ev-note-input").forEach((inp) => {
+        const id = inp.getAttribute("data-ev-id");
+        if (id && notes[id]) inp.value = notes[id];
+        inp.addEventListener("input", () => {
+          notes[id] = inp.value;
+          saveNotes(notes);
+        });
+        inp.addEventListener("change", () => {
+          notes[id] = inp.value;
+          saveNotes(notes);
+        });
+      });
+    }
+
+    function renderScheduleByCover() {
+      const mount = document.getElementById("schedule-list-mount");
+      const order = ["c1", "c2", "c3", "c4", "c5"];
+      const byCover = {};
+      order.forEach((id) => {
+        byCover[id] = [];
+      });
+      events.forEach((e) => {
+        byCover[e.coverId].push(e);
+      });
+      let html = "";
+      for (const cid of order) {
+        const cv = covers[cid];
+        const list = byCover[cid].sort((a, b) => eventDate(a) - eventDate(b) || a.start - b.start);
+        html += `<article class="cover-schedule"><h3><span class="dot" style="background:${cv.color}"></span>${cv.name} <span class="legend-meta">— ${cv.artist}</span></h3><ul>`;
+        for (const e of list) {
+          const wd = longWeekday(e.y, e.mo, e.d);
+          const mdy = longMonthDayYear(e.y, e.mo, e.d);
+          const tShort = typeLabel(e.type);
+          html += `<li><span class="li-main">${mdy}, ${wd}</span> · ${e.timeStr}<span class="li-type ${e.type}">${tShort}</span></li>`;
+        }
+        html += `</ul></article>`;
+      }
+      mount.innerHTML = html;
+    }
+
+    const root = document.getElementById("months");
+    root.appendChild(renderMonth(2026, 5));
+    root.appendChild(renderMonth(2026, 6));
+    root.appendChild(renderMonth(2026, 7));
+
+    renderScheduleByCover();
+    wireLegendHighlight();
+    wireNotes();
+  </script>
+</body>
+</html>

@@ -57,6 +57,18 @@
       color: var(--muted);
       font-size: 0.95rem;
     }
+    .top-jump {
+      display: inline-flex;
+      margin-top: 0.45rem;
+      font-size: 0.82rem;
+      color: var(--text);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      border-radius: 999px;
+      padding: 0.2rem 0.65rem;
+    }
+    .top-jump:hover { border-color: rgba(255, 255, 255, 0.45); }
     .layout {
       max-width: 1200px;
       margin: 0 auto;
@@ -128,6 +140,16 @@
       color: var(--muted);
       font-weight: 400;
     }
+    .legend-jump {
+      margin-left: auto;
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.08rem 0.45rem;
+    }
+    .legend-jump:hover { color: var(--text); border-color: rgba(255, 255, 255, 0.35); }
     .swatch {
       width: 10px;
       height: 10px;
@@ -437,6 +459,121 @@
     .cover-schedule .li-type.dress { background: #7f1d1d; color: #fecaca; }
     .cover-schedule .li-type.film { background: #78350f; color: #fde68a; }
     .cover-schedule .li-type.perf { background: #581c87; color: #f5d0fe; }
+    .cover-details {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .cover-details h2 {
+      font-size: 1.05rem;
+      margin: 0 0 0.8rem;
+      letter-spacing: -0.02em;
+    }
+    .cover-details-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-bottom: 0.9rem;
+    }
+    .cover-details-nav a {
+      font-size: 0.75rem;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.14rem 0.6rem;
+      background: var(--panel);
+    }
+    .cover-details-nav a:hover { border-color: rgba(255, 255, 255, 0.35); }
+    .cover-detail-card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.9rem 1rem 1rem;
+      margin-bottom: 0.9rem;
+      scroll-margin-top: 1rem;
+    }
+    .cover-detail-card:last-child { margin-bottom: 0; }
+    .cover-detail-card h3 {
+      margin: 0 0 0.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.95rem;
+    }
+    .cover-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0.6rem;
+    }
+    @media (min-width: 900px) {
+      .cover-detail-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .cover-detail-field label {
+      display: block;
+      color: var(--muted);
+      font-size: 0.73rem;
+      margin-bottom: 0.2rem;
+    }
+    .cover-detail-input {
+      width: 100%;
+      font: inherit;
+      font-size: 0.8rem;
+      color: var(--text);
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 0.35rem 0.45rem;
+    }
+    .cover-detail-input:focus {
+      outline: none;
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.5);
+    }
+    .cover-detail-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.65rem;
+    }
+    .cover-detail-actions a {
+      font-size: 0.74rem;
+      text-decoration: none;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.12rem 0.55rem;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .cover-detail-actions a[aria-disabled="true"] {
+      pointer-events: none;
+      opacity: 0.45;
+    }
+    .costume-preview {
+      margin-top: 0.65rem;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background: rgba(0, 0, 0, 0.2);
+    }
+    .costume-preview img {
+      width: 100%;
+      max-height: 220px;
+      object-fit: contain;
+      display: block;
+      background: #0b0d12;
+    }
+    .costume-empty {
+      color: var(--muted);
+      font-size: 0.74rem;
+      text-align: center;
+      padding: 0.8rem;
+    }
     .foot-note {
       margin-top: 1.25rem;
       font-size: 0.78rem;
@@ -454,6 +591,7 @@
   <header>
     <h1>K-pop cover schedule</h1>
     <p class="sub">May–July 2026 · Weeks start on Sunday · Times shown as listed</p>
+    <a class="top-jump" href="#cover-details">Jump to cover details</a>
   </header>
   <div class="layout">
     <aside>
@@ -462,22 +600,27 @@
         <div class="legend-cover-line" tabindex="0" data-cover-id="c1" title="Hover to highlight on calendar">
           <span class="swatch" style="background:var(--c1)"></span>
           <span class="legend-cover-text">That’s a No No — ITZY</span>
+          <a class="legend-jump" href="#cover-card-c1">Details</a>
         </div>
         <div class="legend-cover-line" tabindex="0" data-cover-id="c2" title="Hover to highlight on calendar">
           <span class="swatch" style="background:var(--c2)"></span>
           <span class="legend-cover-text">Smart — Le Sserafim</span>
+          <a class="legend-jump" href="#cover-card-c2">Details</a>
         </div>
         <div class="legend-cover-line" tabindex="0" data-cover-id="c3" title="Hover to highlight on calendar">
           <span class="swatch" style="background:var(--c3)"></span>
           <span class="legend-cover-text">Easy — Le Sserafim</span>
+          <a class="legend-jump" href="#cover-card-c3">Details</a>
         </div>
         <div class="legend-cover-line" tabindex="0" data-cover-id="c4" title="Hover to highlight on calendar">
           <span class="swatch" style="background:var(--c4)"></span>
           <span class="legend-cover-text">Tokyo Drift — One or Eight</span>
+          <a class="legend-jump" href="#cover-card-c4">Details</a>
         </div>
         <div class="legend-cover-line" tabindex="0" data-cover-id="c5" title="Hover to highlight on calendar">
           <span class="swatch" style="background:var(--c5)"></span>
           <span class="legend-cover-text">404 New Era — KiiKii</span>
+          <a class="legend-jump" href="#cover-card-c5">Details</a>
         </div>
       </div>
       <div class="legend-block">
@@ -497,6 +640,17 @@
     </aside>
     <main class="months" id="months"></main>
   </div>
+  <section class="cover-details" id="cover-details" aria-labelledby="cover-details-heading">
+    <h2 id="cover-details-heading">Dance cover details</h2>
+    <nav class="cover-details-nav" aria-label="Dance cover details links">
+      <a href="#cover-card-c1">That’s a No No</a>
+      <a href="#cover-card-c2">Smart</a>
+      <a href="#cover-card-c3">Easy</a>
+      <a href="#cover-card-c4">Tokyo Drift</a>
+      <a href="#cover-card-c5">404 New Era</a>
+    </nav>
+    <div id="cover-details-mount"></div>
+  </section>
   <section class="schedule-section" id="schedule-by-cover" aria-labelledby="schedule-heading">
     <h2 id="schedule-heading">Schedule by cover</h2>
     <div id="schedule-list-mount"></div>
@@ -506,6 +660,7 @@
   </p>
   <script>
     const NOTES_KEY = "kpop-dance-cal-notes-v1";
+    const COVER_INFO_KEY = "kpop-dance-cal-cover-info-v1";
 
     const covers = {
       c1: { name: "That’s a No No", artist: "ITZY", color: "var(--c1)", bg: "var(--c1-dim)" },
@@ -513,6 +668,14 @@
       c3: { name: "Easy", artist: "Le Sserafim", color: "var(--c3)", bg: "var(--c3-dim)" },
       c4: { name: "Tokyo Drift", artist: "One or Eight", color: "var(--c4)", bg: "var(--c4-dim)" },
       c5: { name: "404 New Era", artist: "KiiKii", color: "var(--c5)", bg: "var(--c5-dim)" },
+    };
+    const coverOrder = ["c1", "c2", "c3", "c4", "c5"];
+    const DEFAULT_COVER_INFO = {
+      c1: { idol: "", driveLink: "", planningDoc: "", costumeImage: "" },
+      c2: { idol: "", driveLink: "", planningDoc: "", costumeImage: "" },
+      c3: { idol: "", driveLink: "", planningDoc: "", costumeImage: "" },
+      c4: { idol: "", driveLink: "", planningDoc: "", costumeImage: "" },
+      c5: { idol: "", driveLink: "", planningDoc: "", costumeImage: "" },
     };
 
     const TYPE_ICO = { practice: "▶", dress: "◆", film: "◎", perf: "★" };
@@ -805,6 +968,108 @@
       } catch (_) {}
     }
 
+    function escapeHtml(str) {
+      return String(str || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll("\"", "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function loadCoverInfo() {
+      let parsed = {};
+      try {
+        const rawInfo = localStorage.getItem(COVER_INFO_KEY);
+        parsed = rawInfo ? JSON.parse(rawInfo) : {};
+      } catch (_) {}
+      const merged = {};
+      coverOrder.forEach((cid) => {
+        merged[cid] = { ...DEFAULT_COVER_INFO[cid], ...(parsed[cid] || {}) };
+      });
+      return merged;
+    }
+
+    function saveCoverInfo(info) {
+      try {
+        localStorage.setItem(COVER_INFO_KEY, JSON.stringify(info));
+      } catch (_) {}
+    }
+
+    let coverInfoState = loadCoverInfo();
+
+    function actionLink(url) {
+      const safeUrl = (url || "").trim();
+      if (!safeUrl) {
+        return { href: "#", disabled: "true" };
+      }
+      return { href: safeUrl, disabled: "false" };
+    }
+
+    function renderCoverDetails() {
+      const mount = document.getElementById("cover-details-mount");
+      let html = "";
+      coverOrder.forEach((cid) => {
+        const cv = covers[cid];
+        const info = coverInfoState[cid] || DEFAULT_COVER_INFO[cid];
+        const drive = actionLink(info.driveLink);
+        const doc = actionLink(info.planningDoc);
+        const costume = actionLink(info.costumeImage);
+        html += `<article class="cover-detail-card" id="cover-card-${cid}">
+          <h3><span class="dot" style="background:${cv.color}"></span>${cv.name} <span class="legend-meta">— ${cv.artist}</span></h3>
+          <div class="cover-detail-grid">
+            <div class="cover-detail-field">
+              <label for="idol-${cid}">Idol covered</label>
+              <input id="idol-${cid}" class="cover-detail-input" data-cover-id="${cid}" data-field="idol" type="text" placeholder="e.g. Yeji" value="${escapeHtml(info.idol)}" />
+            </div>
+            <div class="cover-detail-field">
+              <label for="drive-${cid}">Google Drive link</label>
+              <input id="drive-${cid}" class="cover-detail-input" data-cover-id="${cid}" data-field="driveLink" type="url" placeholder="https://drive.google.com/..." value="${escapeHtml(info.driveLink)}" />
+            </div>
+            <div class="cover-detail-field">
+              <label for="doc-${cid}">Planning Google Doc link</label>
+              <input id="doc-${cid}" class="cover-detail-input" data-cover-id="${cid}" data-field="planningDoc" type="url" placeholder="https://docs.google.com/..." value="${escapeHtml(info.planningDoc)}" />
+            </div>
+            <div class="cover-detail-field">
+              <label for="costume-${cid}">Costume image URL</label>
+              <input id="costume-${cid}" class="cover-detail-input" data-cover-id="${cid}" data-field="costumeImage" type="url" placeholder="https://.../costume.jpg" value="${escapeHtml(info.costumeImage)}" />
+            </div>
+          </div>
+          <div class="cover-detail-actions">
+            <a href="#months">Back to calendar</a>
+            <a href="${escapeHtml(drive.href)}" target="_blank" rel="noopener noreferrer" aria-disabled="${drive.disabled}">Open Drive</a>
+            <a href="${escapeHtml(doc.href)}" target="_blank" rel="noopener noreferrer" aria-disabled="${doc.disabled}">Open planning doc</a>
+            <a href="${escapeHtml(costume.href)}" target="_blank" rel="noopener noreferrer" aria-disabled="${costume.disabled}">Open costume image</a>
+          </div>
+          <div class="costume-preview">
+            ${
+              costume.disabled === "true"
+                ? `<div class="costume-empty">Add a costume image URL to preview it here.</div>`
+                : `<img src="${escapeHtml(costume.href)}" alt="Costume info for ${escapeHtml(cv.name)}" loading="lazy" />`
+            }
+          </div>
+        </article>`;
+      });
+      mount.innerHTML = html;
+      wireCoverDetailInputs();
+    }
+
+    function wireCoverDetailInputs() {
+      document.querySelectorAll(".cover-detail-input").forEach((input) => {
+        input.addEventListener("input", () => {
+          const cid = input.getAttribute("data-cover-id");
+          const field = input.getAttribute("data-field");
+          if (!cid || !field) return;
+          if (!coverInfoState[cid]) coverInfoState[cid] = { ...DEFAULT_COVER_INFO[cid] };
+          coverInfoState[cid][field] = input.value;
+          saveCoverInfo(coverInfoState);
+        });
+        input.addEventListener("change", () => {
+          renderCoverDetails();
+        });
+      });
+    }
+
     function wireLegendHighlight() {
       const setHl = (id) => {
         if (id) {
@@ -842,16 +1107,15 @@
 
     function renderScheduleByCover() {
       const mount = document.getElementById("schedule-list-mount");
-      const order = ["c1", "c2", "c3", "c4", "c5"];
       const byCover = {};
-      order.forEach((id) => {
+      coverOrder.forEach((id) => {
         byCover[id] = [];
       });
       events.forEach((e) => {
         byCover[e.coverId].push(e);
       });
       let html = "";
-      for (const cid of order) {
+      for (const cid of coverOrder) {
         const cv = covers[cid];
         const list = byCover[cid].sort((a, b) => eventDate(a) - eventDate(b) || a.start - b.start);
         html += `<article class="cover-schedule"><h3><span class="dot" style="background:${cv.color}"></span>${cv.name} <span class="legend-meta">— ${cv.artist}</span></h3><ul>`;
@@ -871,6 +1135,7 @@
     root.appendChild(renderMonth(2026, 6));
     root.appendChild(renderMonth(2026, 7));
 
+    renderCoverDetails();
     renderScheduleByCover();
     wireLegendHighlight();
     wireNotes();
